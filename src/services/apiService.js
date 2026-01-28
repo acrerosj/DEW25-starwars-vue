@@ -13,5 +13,11 @@ export default {
     getCharacters() {
         return apiClient.get('/characters');
     },
+    getPlanets() {
+        return apiClient.get('/planets');
+    },
+    getCharacterDetails(id) {
+        return apiClient.get(`/characters/${id}`);
+    }
     
 };

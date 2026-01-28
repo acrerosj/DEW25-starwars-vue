@@ -14,7 +14,9 @@ onMounted( () => {
 <template>
     <h1>Personajes</h1>
     <div v-for="char in store.characters" :key="char.id">
-        <h3>{{ char.name }}</h3>
+        <RouterLink :to="`/character/${char.id}`">
+            <h3>{{ char.name }}</h3>
+        </RouterLink>
         <p>Especie: {{ char.species }}</p>
     </div>
 </template>

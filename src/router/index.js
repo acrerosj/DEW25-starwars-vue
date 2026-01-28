@@ -10,20 +10,22 @@ const router = createRouter({
       name: 'home',
       component: HomeView,
     },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue'),
-    },
-    {
-      path: '/mi-vista',
-      name: 'mi-vista',
-      component: () => import('../views/MiView.vue'),
-    },
     { path: '/characters', name: 'characters', component: CharactersView },  
+    { path: '/planets', name: 'planets', component: () => import('@/views/PlanetsView.vue') },
+    { path: '/character/:id', name: 'character-detail', component: () => import('@/views/CharacterDetailView.vue') },
+    // {
+    //   path: '/about',
+    //   name: 'about',
+    //   // route level code-splitting
+    //   // this generates a separate chunk (About.[hash].js) for this route
+    //   // which is lazy-loaded when the route is visited.
+    //   component: () => import('../views/AboutView.vue'),
+    // },
+    // {
+    //   path: '/mi-vista',
+    //   name: 'mi-vista',
+    //   component: () => import('../views/MiView.vue'),
+    // },
 
   ],
 })
