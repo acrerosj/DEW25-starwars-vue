@@ -1,10 +1,17 @@
 <script setup>
 import { useStarWarsStore } from '@/stores/starwars';
-import { onMounted } from 'vue';
+import { onMounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
 
 const starWarsStore = useStarWarsStore();
 const route = useRoute();
+
+watch(
+    () => route.params.id, 
+    async (newId) => {
+        await starWarsStore.fetchCharacterDetails(newId);
+    }
+);
 
 onMounted(async () => {
     const characterId = route.params.id;

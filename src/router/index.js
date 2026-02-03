@@ -10,9 +10,18 @@ const router = createRouter({
       name: 'home',
       component: HomeView,
     },
-    { path: '/characters', name: 'characters', component: CharactersView },  
+    { path: '/characters', 
+      name: 'characters', 
+      component: CharactersView,
+      children: [
+        { path: ':id', 
+          name: 'character-detail', 
+          component: () => import('@/views/CharacterDetailView.vue'), 
+          props: true 
+        },
+      ]
+    },  
     { path: '/planets', name: 'planets', component: () => import('@/views/PlanetsView.vue') },
-    { path: '/character/:id', name: 'character-detail', component: () => import('@/views/CharacterDetailView.vue') },
     // {
     //   path: '/about',
     //   name: 'about',
