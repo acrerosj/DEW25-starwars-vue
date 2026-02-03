@@ -18,6 +18,15 @@ export default {
     },
     getCharacterDetails(id) {
         return apiClient.get(`/characters/${id}`);
+    },
+    createCharacter(characterData) {
+        return apiClient.post('/characters', characterData);
+    },
+    updateCharacter(id, characterData) {
+        return apiClient.put(`/characters/${id}`, characterData);
+    },
+    deleteCharacter(id) {
+        return apiClient.delete(`/characters/${id}`);
     }
     
 };

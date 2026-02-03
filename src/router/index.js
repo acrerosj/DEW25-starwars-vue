@@ -19,6 +19,16 @@ const router = createRouter({
           component: () => import('@/views/CharacterDetailView.vue'), 
           props: true 
         },
+        { path: 'create',
+          name: 'character-create', 
+          component: () => import('@/views/CharacterFormView.vue')
+        },
+        {
+          path: ':id/edit',
+          name: 'character-edit',
+          component: () => import('@/views/CharacterFormView.vue'),
+          props: true
+        }
       ]
     },  
     { path: '/planets', name: 'planets', component: () => import('@/views/PlanetsView.vue') },

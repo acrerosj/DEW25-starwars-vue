@@ -23,9 +23,14 @@ onMounted( () => {
 </script>
 
 <template>
+    <div class="flex justify-between p-3 bg-black">
+        <h1 class="text-3xl font-bold text-yellow-400 p-3">Personajes</h1>
+        <RouterLink :to="{ name:'character-create'}" class="bg-yellow-400 text-black p-2 rounded hover:bg-yellow-300 transition mt-4 inline-block mb-4">
+            Crear nuevo personaje
+        </RouterLink> 
+    </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div class="bg-gray-900 text-yellow-500 p-4 rounded">
-            <h1 class="text-2xl font-bold">Personajes</h1>
             <input 
                 v-model="searchQuery" 
                 type="text" 
