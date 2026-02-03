@@ -1,10 +1,20 @@
 <script setup>
 import { useStarWarsStore } from '@/stores/starwars';
-import { onMounted } from 'vue';
+import { onMounted, ref, computed } from 'vue';
 import { RouterLink, RouterView } from 'vue-router'
 
 
 const store = useStarWarsStore();
+const searchQuery = ref('');
+
+const filteredCharacters = computed(() => {
+    if (!searchQuery.value) {
+        return store.characters;
+    }
+    return store.characters.filter(char => 
+        char.name.toLowerCase().includes(searchQuery.value.toLowerCase())
+    );
+});
 
 onMounted( () => {
     store.fetchCharacters();
@@ -16,7 +26,14 @@ onMounted( () => {
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div class="bg-gray-900 text-yellow-500 p-4 rounded">
             <h1 class="text-2xl font-bold">Personajes</h1>
-            <div v-for="char in store.characters" :key="char.id" class="text-xl mt-5">
+            <input 
+                v-model="searchQuery" 
+                type="text" 
+                placeholder="Buscar personaje..." 
+                class="w-full p-2 mt-4 mb-4 rounded bg-gray-800 text-yellow-400 border border-yellow-400"
+            />
+            <p class="text-gray-500 text-sm">{{ filteredCharacters.length }} encontrados de {{ store.characters.length }} personaje</p>
+            <div v-for="char in filteredCharacters" :key="char.id" class="text-xl mt-5">
                 <RouterLink :to="{ name: 'character-detail', params: { id: char.id } }" class="hover:text-yellow-300">
                     <h3>{{ char.name }}</h3>
                 </RouterLink>
